@@ -21,7 +21,7 @@ const Linktree = () => {
   const bioData = {
     name: 'E-Cell DYPIU',
     username: '@ecell.dypiu',
-    url: 'https://ecell-dypiu.vercel.app',
+    url: 'https://ecelldypiu.in',
     avatar: '/logonew.png',
     description: 'Entrepreneurship Cell at DY Patil International University',
     subdesc: 'Empowering the next generation of entrepreneurs and innovators',

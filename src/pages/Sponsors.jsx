@@ -11,7 +11,7 @@ const Sponsors = () => {
     },
     {
       name: 'Surya Electronics',
-      logo: '/logo.svg',
+      logo: '/Surya Logo web.png',
       website: 'https://www.suryaelectronics.in/'
     },
     {

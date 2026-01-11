@@ -140,7 +140,7 @@ const SIH = () => {
 
                             <div className="lg:w-1/3">
                                 <div className="border-4 border-white bg-zinc-900 p-4 rounded-[2rem] rotate-3 hover:rotate-0 transition-transform duration-500 shadow-[12px_12px_0px_#FFB22C]">
-                                    <img src={eventDetails.image} alt="SIH" className="w-full h-auto rounded-xl grayscale hover:grayscale-0 transition-all duration-500" />
+                                    <img src={eventDetails.image} alt="SIH" className="w-full h-auto rounded-xl transition-all duration-500" />
                                 </div>
                             </div>
                         </div>
@@ -200,7 +200,7 @@ const SIH = () => {
                             <div key={i} className="group relative">
                                 <div className="bg-black border-4 border-white p-8 rounded-[2rem] flex items-center gap-8 shadow-[12px_12px_0px_#fff] group-hover:shadow-[8px_8px_0px_#fff] group-hover:translate-x-1 group-hover:translate-y-1 transition-all">
                                     <div className="w-24 h-24 shrink-0 rounded-full border-4 border-brand-yellow overflow-hidden">
-                                        <img src={judge.image} alt={judge.name} className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all" />
+                                        <img src={judge.image} alt={judge.name} className="w-full h-full object-cover transition-all" />
                                     </div>
                                     <div>
                                         <h3 className="text-2xl font-black uppercase mb-1">{judge.name}</h3>

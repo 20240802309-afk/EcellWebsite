@@ -142,7 +142,7 @@ const Elevate = () => {
 
               <div className="lg:w-1/3">
                 <div className="border-4 border-white bg-zinc-900 p-4 rounded-[2rem] rotate-3 hover:rotate-0 transition-transform duration-500 shadow-[12px_12px_0px_#FFB22C]">
-                  <img src={eventDetails.image} alt="Elevate" className="w-full h-auto rounded-xl grayscale hover:grayscale-0 transition-all duration-500" />
+                  <img src={eventDetails.image} alt="Elevate" className="w-full h-auto rounded-xl transition-all duration-500" />
                 </div>
               </div>
             </div>
@@ -181,7 +181,7 @@ const Elevate = () => {
                 <div className="bg-black border-4 border-white p-8 rounded-[2rem] flex flex-col items-center gap-6 shadow-[12px_12px_0px_#fff] group-hover:shadow-[8px_8px_0px_#fff] group-hover:translate-x-1 group-hover:translate-y-1 transition-all text-center h-full">
                   <div className="w-32 h-32 shrink-0 rounded-full border-4 border-brand-yellow overflow-hidden bg-zinc-800 flex items-center justify-center">
                     {guest.image ? (
-                      <img src={guest.image} alt={guest.name} className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all" />
+                      <img src={guest.image} alt={guest.name} className="w-full h-full object-cover transition-all" />
                     ) : (
                       <Star className="w-12 h-12 text-brand-yellow" />
                     )}

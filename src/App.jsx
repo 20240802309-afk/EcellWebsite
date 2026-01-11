@@ -19,24 +19,12 @@ import BlogDetail2 from './pages/BlogDetail2';
 import BlogDetail3 from './pages/BlogDetail3';
 import Linktree from './pages/Linktree';
 import './App.css';
-import { useEffect } from 'react';
-import Lenis from 'lenis';
+// import { useEffect } from 'react';
+// import Lenis from 'lenis';
 
 function App() {
-  useEffect(() => {
-    const lenis = new Lenis();
+  // Lenis initialized in ScrollToTop component
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      // clean up if necessary
-    };
-  }, []);
 
   return (
     <Router>

@@ -76,7 +76,7 @@ const Home = () => {
     <div className="min-h-screen bg-brand-white text-black overflow-hidden">
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center items-center bg-black px-4 pt-24 pb-12 md:pt-32 md:pb-20">
+      <section className="relative min-h-[60vh] md:min-h-screen flex flex-col justify-center items-center bg-black px-4 pt-24 pb-12 md:pt-32 md:pb-20">
         <div className="container mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 100 }}

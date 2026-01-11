@@ -194,7 +194,7 @@ const Team = () => {
       </section>
 
       {/* 5. CTA: Massive Button */}
-      <section className="py-16 md:py-24 bg-white text-black text-center relative overflow-hidden">
+      <section className="py-10 md:py-16 bg-white text-black text-center relative overflow-hidden">
         <Marquee text="JOIN US " direction="right" speed={15} className="absolute top-4 opacity-20" />
         <Marquee text="BECOME A LEADER " direction="left" speed={25} className="absolute bottom-4 opacity-20" />
 

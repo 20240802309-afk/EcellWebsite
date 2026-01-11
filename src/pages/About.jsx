@@ -58,8 +58,8 @@ const About = () => {
               ABOUT<br /><span className="text-white">US</span>
             </h1>
             <div className="flex flex-col md:flex-row justify-between items-end mt-12 gap-8">
-              <p className="text-xl md:text-3xl font-bold max-w-2xl leading-tight">
-                EMPOWERING <span className="text-brand-yellow underline decoration-wavy underline-offset-8">STUDENTS</span> TO BECOME SUCCESSFUL ENTREPRENEURS.
+              <p className="text-xl md:text-3xl font-bold max-w-2xl leading-relaxed">
+                EMPOWERING <span className="text-brand-yellow underline decoration-wavy underline-offset-4 md:underline-offset-8">STUDENTS</span> TO BECOME SUCCESSFUL ENTREPRENEURS.
               </p>
             </div>
           </motion.div>
@@ -157,7 +157,7 @@ const About = () => {
       </section>
 
       {/* Join Us Section */}
-      <section className="py-40 bg-zinc-900 border-t-4 border-white relative overflow-hidden text-center">
+      <section className="py-16 md:py-24 bg-zinc-900 border-t-4 border-white relative overflow-hidden text-center">
         <div className="container mx-auto relative z-10 px-4">
           <h2 className="text-6xl md:text-9xl font-black text-white mb-12 tracking-tighter leading-none">
             JOIN THE<br /><span className="text-brand-yellow">REVOLUTION</span>

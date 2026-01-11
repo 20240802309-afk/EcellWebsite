@@ -34,6 +34,18 @@ const Events = () => {
 
   const successfulEvents = [
     {
+      id: 4,
+      title: "FinBiz'25 Powered by Surya Electronics",
+      date: '8th and 9th November 2025',
+      time: '36 Hour Marathon',
+      location: 'DYPIU Campus',
+      description: 'An unprecedented entrepreneurship & trading conclave by E-Cell DYPIU. 36-hour marathon of extensive learning and competition.',
+      category: 'Conclave',
+      participants: '500+',
+      image: '/FINBIZ_SURYA.png',
+      featured: true,
+    },
+    {
       id: 1,
       title: 'Inceptio\'25',
       date: '19th and 20th August 2025',
@@ -107,41 +119,10 @@ const Events = () => {
           </h2>
 
           {/* FinBiz'25 Event Card - Brutalist */}
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-black border-4 border-brand-yellow rounded-[2rem] p-8 md:p-12 shadow-[12px_12px_0px_white] hover:shadow-[8px_8px_0px_white] hover:translate-x-1 hover:translate-y-1 transition-all"
-            >
-              <div className="flex flex-col md:flex-row gap-8 items-start">
-                <div className="flex-1">
-                  <div className="inline-block bg-brand-yellow text-black font-black px-4 py-1 mb-4 text-sm uppercase">Featured Event</div>
-                  <h3 className="text-2xl md:text-5xl font-black mb-6 uppercase leading-tight">
-                    FinBiz'25 <span className="stroke-text text-transparent">SURYA</span>
-                  </h3>
-                  <p className="text-xl text-gray-400 font-bold mb-8">
-                    An unprecedented entrepreneurship & trading conclave by E-Cell DYPIU. 36-hour marathon of extensive learning and competition.
-                  </p>
-
-                  <div className="flex gap-6 mb-8 text-lg font-mono">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="text-brand-yellow" /> 8-9 NOV
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Trophy className="text-brand-yellow" /> 36 HOURS
-                    </div>
-                  </div>
-
-                  <Link to="/events/finbiz" className="inline-block bg-white text-black text-xl font-black px-8 py-4 border-4 border-transparent hover:border-black hover:bg-brand-yellow transition-colors">
-                    VIEW DETAILS
-                  </Link>
-                </div>
-                <div className="hidden md:block w-48 h-48 bg-zinc-800 border-4 border-white rotate-3 flex items-center justify-center">
-                  <Star className="w-24 h-24 text-white" />
-                </div>
-              </div>
-            </motion.div>
+          <div className="text-center py-20 border-4 border-dashed border-zinc-700 rounded-[2rem]">
+            <h3 className="text-2xl md:text-4xl font-bold text-gray-500 uppercase">
+              More innovative events <br /> <span className="text-white">Coming Soon...</span>
+            </h3>
           </div>
         </div>
       </section>

@@ -751,26 +751,43 @@
 
                 ctx.fillText(displayId, idX, idY);
 
-                // Wait for QR to be fully generated
-                setTimeout(() => {
+                // Wait for QR to be fully generated with retry logic
+                const checkAndDrawQR = (attempts = 0) => {
+                    // Stop after 2 seconds (20 * 100ms)
+                    if (attempts > 20) {
+                        qrTemp.classList.add('hidden');
+                        return;
+                    }
+
+                    const qrCanvas = qrTemp.querySelector('canvas');
                     const qrImg = qrTemp.querySelector('img');
 
-                    // Add retry logic or check for src
-                    if (qrImg && qrImg.src && qrImg.src.length > 100) {
-                        const qrSrc = qrImg.src;
+                    if (qrCanvas) {
+                        // Preferred: Draw directly from the library's canvas (Reliable on mobile)
+                        ctx.drawImage(qrCanvas, qrX, qrY, qrSize, qrSize);
+                        ctx.strokeStyle = '#FFFFFF';
+                        ctx.lineWidth = 4;
+                        ctx.strokeRect(qrX, qrY, qrSize, qrSize);
+                        qrTemp.classList.add('hidden');
+                    } else if (qrImg && qrImg.src && qrImg.src.length > 100) {
+                        // Fallback: Draw from generated image source
                         const imgQR = new Image();
                         imgQR.onload = () => {
                             ctx.drawImage(imgQR, qrX, qrY, qrSize, qrSize);
                             ctx.strokeStyle = '#FFFFFF';
                             ctx.lineWidth = 4;
                             ctx.strokeRect(qrX, qrY, qrSize, qrSize);
-
-                            // Cleanup
                             qrTemp.classList.add('hidden');
                         };
-                        imgQR.src = qrSrc;
+                        imgQR.src = qrImg.src;
+                    } else {
+                        // Retry if neither is ready
+                        setTimeout(() => checkAndDrawQR(attempts + 1), 100);
                     }
-                }, 300); // Increased timeout for slower devices
+                };
+
+                // Start checking
+                checkAndDrawQR();
             };
             img.src = '/event-pass-template.png';
         }

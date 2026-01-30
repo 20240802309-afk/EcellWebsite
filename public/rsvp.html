@@ -1046,33 +1046,57 @@
             }
 
             // Create email subject
-            const subject = `🚀 Registration Confirmed: Innovate For Impact 2026`;
+            const subject = `Your Event Pass - Innovate For Impact 2026`;
 
-            // Create professional and engaging email body
-            // Kept concise enough for 'mailto' compatibility but professional in tone
+            // Create detailed email body as requested
             const retrievePassUrl = window.location.origin + '/rsvp.html';
-            const body = `Dear Team,
+            const body = `Hi Team ${currentPassData.team}! 
 
-Congratulations! Your spot for 'Innovate For Impact 2026' is officially confirmed. We are thrilled to have you join us for this flagship event.
+Great news! Your registration for Innovate For Impact 2026 has been confirmed! 
 
-🔹 REGISTRATION DETAILS
-ID: ${currentPassData.ticketId}
-Team: ${currentPassData.team}
-Leader: ${currentPassData.name}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ REGISTRATION DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🔹 ACTION REQUIRED: DOWNLOAD PASS
-Your official event pass is ready. Please download it immediately using the link below:
+ Ticket ID: ${currentPassData.ticketId}
+ Team Leader: ${currentPassData.name}
+ Team Name: ${currentPassData.team}
+ Registered Email: ${currentPassData.email}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ EVENT DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ Date: 01 February 2026
+ Duration: 6 Hours
+ Venue: DYPIU, Akurdi, Pune
+ Prize Pool: ₹10,000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GET YOUR EVENT PASS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+To download your graphical Event Pass anytime, visit:
 ${retrievePassUrl}
 
-(Select "Retrieve Pass" tab > Enter Name/Email)
+Click on "Retrieve Pass" tab and enter your name and email to get your pass!
 
-🔹 EVENT ESSENTIALS
-📅 Date: Feb 01, 2026
-📍 Venue: DYPIU, Akurdi
-⏰ Reporting Time: 30 minutes prior
-🆔 Mandatory: Valid College ID & Saved Pass Image
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ IMPORTANT INSTRUCTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Get ready to innovate and make an impact!
+ Please find your official Event Pass attached to this email
+ Save this pass on your phone - you'll need it for entry
+ Arrive 30 minutes before the event for smooth check-in
+ Bring a valid college ID card
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For any queries, contact: 9021479745
+
+We're excited to see you at the event! 
 
 Best regards,
 E-Cell DYPIU Team`;

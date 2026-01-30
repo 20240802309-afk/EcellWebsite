@@ -1046,33 +1046,36 @@
             }
 
             // Create email subject
-            const subject = `Your Event Pass - Innovate For Impact 2026`;
+            const subject = `🚀 Registration Confirmed: Innovate For Impact 2026`;
 
-            // Create concise email body to avoid URL length limits
+            // Create professional and engaging email body
+            // Kept concise enough for 'mailto' compatibility but professional in tone
             const retrievePassUrl = window.location.origin + '/rsvp.html';
-            const body = `Hi Team,
+            const body = `Dear Team,
 
-Registration confirmed for Innovate For Impact 2026!
+Congratulations! Your spot for 'Innovate For Impact 2026' is officially confirmed. We are thrilled to have you join us for this flagship event.
 
-TICKET DETAILS:
+🔹 REGISTRATION DETAILS
 ID: ${currentPassData.ticketId}
 Team: ${currentPassData.team}
 Leader: ${currentPassData.name}
 
-GET YOUR PASS:
-Download your official pass here:
+🔹 ACTION REQUIRED: DOWNLOAD PASS
+Your official event pass is ready. Please download it immediately using the link below:
 ${retrievePassUrl}
 
-(Go to "Retrieve Pass", enter your name/email)
+(Select "Retrieve Pass" tab > Enter Name/Email)
 
-IMPORTANT:
-- Save the pass image.
-- Bring college ID.
-- Arrive 30 mins early.
+🔹 EVENT ESSENTIALS
+📅 Date: Feb 01, 2026
+📍 Venue: DYPIU, Akurdi
+⏰ Reporting Time: 30 minutes prior
+🆔 Mandatory: Valid College ID & Saved Pass Image
 
-See you on Feb 1st!
+Get ready to innovate and make an impact!
 
-- E-Cell DYPIU Team`;
+Best regards,
+E-Cell DYPIU Team`;
 
             // Encode for URL
             const encodedSubject = encodeURIComponent(subject);

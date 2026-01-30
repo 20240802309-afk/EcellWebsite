@@ -720,6 +720,13 @@
                 // Generate QR
                 const qrTemp = document.getElementById('qr-temp');
                 qrTemp.innerHTML = '';
+
+                // Ensure element is rendered for library to work (fix for mobile)
+                qrTemp.classList.remove('hidden');
+                qrTemp.style.position = 'absolute';
+                qrTemp.style.left = '-9999px';
+                qrTemp.style.top = '-9999px';
+
                 new QRCode(qrTemp, {
                     text: `IFI2026-${displayId}`,
                     width: qrSize,
@@ -744,10 +751,12 @@
 
                 ctx.fillText(displayId, idX, idY);
 
-                // Wait for QR
+                // Wait for QR to be fully generated
                 setTimeout(() => {
                     const qrImg = qrTemp.querySelector('img');
-                    if (qrImg) {
+
+                    // Add retry logic or check for src
+                    if (qrImg && qrImg.src && qrImg.src.length > 100) {
                         const qrSrc = qrImg.src;
                         const imgQR = new Image();
                         imgQR.onload = () => {
@@ -755,10 +764,13 @@
                             ctx.strokeStyle = '#FFFFFF';
                             ctx.lineWidth = 4;
                             ctx.strokeRect(qrX, qrY, qrSize, qrSize);
+
+                            // Cleanup
+                            qrTemp.classList.add('hidden');
                         };
                         imgQR.src = qrSrc;
                     }
-                }, 50);
+                }, 300); // Increased timeout for slower devices
             };
             img.src = '/event-pass-template.png';
         }

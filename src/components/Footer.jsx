@@ -130,12 +130,9 @@ const Footer = () => {
             © {currentYear} E-Cell DYPIU. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-purple-400 text-sm transition-colors duration-300">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-400 hover:text-purple-400 text-sm transition-colors duration-300">
-              Terms of Service
-            </a>
+            <p className="text-gray-400 text-sm">
+              Made with ❤️ by <a href="https://www.linkedin.com/in/yash-kumar-tripathi-998457306/" target="_blank" rel="noopener noreferrer" className="text-brand-yellow hover:text-white transition-colors">Yash Tripathi</a>
+            </p>
           </div>
         </div>
       </div>

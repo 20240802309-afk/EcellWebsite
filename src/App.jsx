@@ -14,7 +14,7 @@ import Inceptio from './pages/Inceptio';
 import Elevate from './pages/Elevate';
 import SIH from './pages/SIH';
 import FinBiz from './pages/FinBiz';
-import HackForImpact from './pages/HackForImpact';
+import InnovateForImpact from './pages/InnovateForImpact';
 import BlogDetail1 from './pages/BlogDetail1';
 import BlogDetail2 from './pages/BlogDetail2';
 import BlogDetail3 from './pages/BlogDetail3';
@@ -42,7 +42,7 @@ function App() {
             <Route path="/events/elevate" element={<Elevate />} />
             <Route path="/events/sih" element={<SIH />} />
             <Route path="/events/finbiz" element={<FinBiz />} />
-            <Route path="/events/hack-for-impact" element={<HackForImpact />} />
+            <Route path="/events/innovate-for-impact" element={<InnovateForImpact />} />
             <Route path="/team" element={<Team />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/where-ideas-meet-impact" element={<BlogDetail1 />} />

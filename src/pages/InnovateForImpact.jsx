@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const HackForImpact = () => {
+const InnovateForImpact = () => {
     const eventDetails = {
         title: 'INNOVATE FOR IMPACT',
         subtitle: 'E-SUMMIT 2026 ZONALS',
@@ -194,7 +194,7 @@ const HackForImpact = () => {
                             REGISTER NOW
                         </a>
                         <a
-                            href="/staff.html"
+                            href="/rsvp.html"
                             target="_blank"
                             className="bg-transparent border-4 border-white text-white text-2xl font-black px-12 py-6 rounded-full hover:bg-white hover:text-black transition-all"
                         >
@@ -219,4 +219,4 @@ const HackForImpact = () => {
     );
 };
 
-export default HackForImpact;
+export default InnovateForImpact;

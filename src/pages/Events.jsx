@@ -162,7 +162,7 @@ const Events = () => {
                 </div>
 
                 <Link
-                  to="/events/hack-for-impact"
+                  to="/events/innovate-for-impact"
                   className="inline-flex items-center justify-between bg-white text-black font-black uppercase tracking-wider px-8 py-4 rounded-xl hover:bg-brand-yellow hover:scale-105 transition-all group-hover:shadow-[8px_8px_0px_rgba(0,0,0,1)]"
                 >
                   Event Details

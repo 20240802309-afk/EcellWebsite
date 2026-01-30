@@ -47,15 +47,15 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <img 
-                src="/logonew.png" 
-                alt="E-Cell" 
+              <img
+                src="/logonew.png"
+                alt="E-Cell"
                 className="h-16 w-auto"
               />
               <span className="text-white font-bold text-2xl tracking-wide">ECELL DYPIU</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md font-body">
-              Fostering entrepreneurship and innovation at D Y Patil International University. 
+              Fostering entrepreneurship and innovation at D Y Patil International University.
               Join us in building the next generation of entrepreneurs and innovators.
             </p>
             <div className="flex space-x-4">
@@ -88,14 +88,7 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  to="/gallery"
-                  className="text-gray-300 hover:text-purple-400 transition-colors duration-300"
-                >
-                  Gallery
-                </Link>
-              </li>
+
               <li>
                 <Link
                   to="/contact"

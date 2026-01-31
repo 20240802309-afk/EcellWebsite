@@ -183,59 +183,10 @@
             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4) !important;
             animation: shake 0.3s ease-in-out;
         }
-
-        .input-error {
-            border-color: #ef4444 !important;
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4) !important;
-            animation: shake 0.3s ease-in-out;
-        }
-
-        /* Toast Notification */
-        #toast-container {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            pointer-events: none;
-        }
-
-        .toast {
-            background: rgba(220, 38, 38, 0.95);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            font-size: 0.875rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: toastIn 0.3s ease-out forwards;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateY(1rem);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 
 <body class="min-h-screen text-white antialiased">
-    <!-- Toast Container -->
-    <div id="toast-container"></div>
-
     <!-- Header -->
     <header class="border-b-4 border-white bg-black sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -298,6 +249,7 @@
                             <input type="text" id="name" required maxlength="25"
                                 class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500"
                                 placeholder="Enter your full name">
+                            <p class="text-xs text-red-500 mt-1 hidden input-limit-error">Enter only 25 chars</p>
                         </div>
 
                         <div>
@@ -701,9 +653,12 @@
                 memberDiv.innerHTML = `
                     <h4 class="font-bold text-sm text-gray-300 mb-3">Member ${i}</h4>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <input type="text" name="member_${i}_name" required maxlength="25"
-                            class="input-field w-full px-3 py-2 rounded-lg text-white placeholder-gray-500 text-sm"
-                            placeholder="Full Name (Max 25 chars) *">
+                        <div>
+                            <input type="text" name="member_${i}_name" required maxlength="25"
+                                class="input-field w-full px-3 py-2 rounded-lg text-white placeholder-gray-500 text-sm"
+                                placeholder="Full Name (Max 25 chars) *">
+                            <p class="text-xs text-red-500 mt-1 hidden input-limit-error">Enter only 25 chars</p>
+                        </div>
                         <input type="email" name="member_${i}_email" required
                             class="input-field w-full px-3 py-2 rounded-lg text-white placeholder-gray-500 text-sm"
                             placeholder="Email *">
@@ -1152,26 +1107,6 @@
             e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
         });
 
-        // Toast Function
-        function showToast(message) {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                ${message}
-            `;
-            container.appendChild(toast);
-
-            // Remove after 3 seconds
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateY(1rem)';
-                toast.style.transition = 'all 0.3s ease-in';
-                setTimeout(() => toast.remove(), 300);
-            }, 2000);
-        }
-
         // Character limit warning (Flash red on attempt to cross limit)
         document.addEventListener('keydown', (e) => {
             if (e.target.tagName === 'INPUT' && e.target.getAttribute('maxlength') === '25') {
@@ -1181,7 +1116,23 @@
 
                 if (e.target.value.length >= 25 && !isControl) {
                     e.target.classList.add('input-error');
-                    showToast('Enter only 25 chars'); // Flash text error
+
+                    // Find specific inline error message
+                    // For Leader: It's a sibling. For Member: It's a sibling in the same container div
+                    let errorMsg = e.target.parentNode.querySelector('.input-limit-error');
+
+                    // Fallback if structure is slightly different (e.g. strict sibling)
+                    if (!errorMsg) {
+                        errorMsg = e.target.nextElementSibling;
+                    }
+
+                    if (errorMsg && errorMsg.classList.contains('input-limit-error')) {
+                        errorMsg.classList.remove('hidden');
+                        setTimeout(() => {
+                            errorMsg.classList.add('hidden');
+                        }, 2000);
+                    }
+
                     setTimeout(() => {
                         e.target.classList.remove('input-error');
                     }, 300);

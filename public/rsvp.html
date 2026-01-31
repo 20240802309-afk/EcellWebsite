@@ -183,6 +183,41 @@
             box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4) !important;
             animation: shake 0.3s ease-in-out;
         }
+
+        /* Suggestions Dropdown */
+        .suggestions-list {
+            background: #18181b;
+            border: 2px solid #3f3f46;
+            border-top: none;
+            border-radius: 0 0 1rem 1rem;
+            max-height: 200px;
+            overflow-y: auto;
+            position: absolute;
+            width: 100%;
+            z-index: 50;
+            display: none;
+        }
+
+        .suggestions-list.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            color: #d1d5db;
+            transition: all 0.2s;
+            border-bottom: 1px solid #3f3f46;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:hover {
+            background: #FFB22C;
+            color: #000;
+        }
     </style>
 </head>
 
@@ -446,9 +481,12 @@
                     <form id="retrieve-form" class="space-y-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-300 mb-2">Name or Email *</label>
-                            <input type="text" id="retrieve-input" required
-                                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500"
-                                placeholder="Enter your Name or registered Email">
+                            <div class="relative">
+                                <input type="text" id="retrieve-input" required
+                                    class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-gray-500"
+                                    placeholder="Enter your Name or registered Email" autocomplete="off">
+                                <div id="suggestions" class="suggestions-list"></div>
+                            </div>
                         </div>
 
                         <div id="retrieve-error"
@@ -612,6 +650,10 @@
         const retrieveError = document.getElementById('retrieve-error');
         const goToRegister = document.getElementById('go-to-register');
 
+        const retrieveInput = document.getElementById('retrieve-input');
+        const suggestionsBox = document.getElementById('suggestions');
+        let allRegisteredNames = []; // Cache for names
+
         // Tab switching
         tabRegister.addEventListener('click', () => {
             tabRegister.classList.add('active');
@@ -621,12 +663,70 @@
             successView.classList.remove('active');
         });
 
-        tabRetrieve.addEventListener('click', () => {
+        tabRetrieve.addEventListener('click', async () => {
             tabRetrieve.classList.add('active');
             tabRegister.classList.remove('active');
             retrieveView.classList.add('active');
             formView.classList.remove('active');
             successView.classList.remove('active');
+
+            // Prefetch names if empty
+            if (allRegisteredNames.length === 0) {
+                try {
+                    const q = query(collection(db, 'rsvp_innovate_2026'));
+                    const snap = await getDocs(q);
+                    const namesSet = new Set();
+
+                    snap.docs.forEach(doc => {
+                        const d = doc.data();
+                        if (d.name) namesSet.add(d.name);
+                        if (d.members) {
+                            d.members.forEach(m => {
+                                if (m.name) namesSet.add(m.name);
+                            });
+                        }
+                    });
+                    allRegisteredNames = Array.from(namesSet);
+                } catch (e) {
+                    console.error("Error fetching names:", e);
+                }
+            }
+        });
+
+        // Autocomplete Logic
+        retrieveInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            suggestionsBox.innerHTML = '';
+
+            if (val.length < 2) {
+                suggestionsBox.classList.remove('active');
+                return;
+            }
+
+            const matches = allRegisteredNames.filter(name => name.toLowerCase().includes(val));
+
+            if (matches.length > 0) {
+                matches.slice(0, 5).forEach(name => { // Limit to 5
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.textContent = name;
+                    div.onclick = () => {
+                        retrieveInput.value = name;
+                        suggestionsBox.classList.remove('active');
+                    };
+                    suggestionsBox.appendChild(div);
+                });
+                suggestionsBox.classList.add('active');
+            } else {
+                suggestionsBox.classList.remove('active');
+            }
+        });
+
+        // Close suggestions click outside
+        document.addEventListener('click', (e) => {
+            if (!retrieveInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+                suggestionsBox.classList.remove('active');
+            }
         });
 
         goToRegister.addEventListener('click', () => {

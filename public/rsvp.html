@@ -258,17 +258,18 @@
         <!-- Tabs -->
         <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
             <button id="tab-retrieve"
-                class="btn-secondary px-6 py-3 rounded-xl text-base md:text-lg uppercase tracking-wider font-bold transition-all">
+                class="btn-primary px-6 py-3 rounded-xl text-base md:text-lg uppercase tracking-wider font-bold transition-all transform scale-105 shadow-lg shadow-brand-yellow/20">
                 🔍 Retrieve Pass
             </button>
             <button id="tab-register"
-                class="btn-primary px-6 py-3 rounded-xl text-base md:text-lg uppercase tracking-wider font-bold transition-all transform scale-105 shadow-lg shadow-brand-yellow/20">
+                class="btn-secondary px-6 py-3 rounded-xl text-base md:text-lg uppercase tracking-wider font-bold transition-all">
                 🎟️ New Registration
             </button>
         </div>
 
         <!-- View: Registration Form -->
-        <div id="form-view" class="view active">
+        <!-- View: Registration Form -->
+        <div id="form-view" class="view">
             <div class="grid md:grid-cols-2 gap-6 md:gap-8">
 
                 <!-- Left: Form -->
@@ -464,7 +465,7 @@
         </div>
 
         <!-- View: Retrieve Pass -->
-        <div id="retrieve-view" class="view">
+        <div id="retrieve-view" class="view active">
             <div class="max-w-md mx-auto">
                 <div class="card rounded-2xl p-6 md:p-8">
                     <div class="text-center mb-6">
@@ -664,23 +665,8 @@
             inactiveBtn.className = 'btn-secondary px-6 py-3 rounded-xl text-base md:text-lg uppercase tracking-wider font-bold transition-all';
         }
 
-        // Tab switching
-        tabRegister.addEventListener('click', () => {
-            setActiveButton(tabRegister, tabRetrieve);
-
-            formView.classList.add('active');
-            retrieveView.classList.remove('active');
-            successView.classList.remove('active');
-        });
-
-        tabRetrieve.addEventListener('click', async () => {
-            setActiveButton(tabRetrieve, tabRegister);
-
-            retrieveView.classList.add('active');
-            formView.classList.remove('active');
-            successView.classList.remove('active');
-
-            // Prefetch names if empty
+        // Prefetch logic function
+        async function prefetchNames() {
             if (allRegisteredNames.length === 0) {
                 try {
                     const q = query(collection(db, 'rsvp_innovate_2026'));
@@ -701,6 +687,28 @@
                     console.error("Error fetching names:", e);
                 }
             }
+        }
+
+        // Init: Run prefetch immediately since Retrieve is default
+        prefetchNames();
+
+        // Tab switching
+        tabRegister.addEventListener('click', () => {
+            setActiveButton(tabRegister, tabRetrieve);
+
+            formView.classList.add('active');
+            retrieveView.classList.remove('active');
+            successView.classList.remove('active');
+        });
+
+        tabRetrieve.addEventListener('click', async () => {
+            setActiveButton(tabRetrieve, tabRegister);
+
+            retrieveView.classList.add('active');
+            formView.classList.remove('active');
+            successView.classList.remove('active');
+
+            prefetchNames();
         });
 
         // Autocomplete Logic

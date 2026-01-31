@@ -1082,6 +1082,18 @@
             e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
         });
 
+        // Character limit warning (Flash red)
+        document.addEventListener('input', (e) => {
+            if (e.target.tagName === 'INPUT' && e.target.getAttribute('maxlength') === '25') {
+                if (e.target.value.length >= 25) {
+                    e.target.classList.add('border-red-500', 'animate-pulse');
+                    setTimeout(() => {
+                        e.target.classList.remove('border-red-500', 'animate-pulse');
+                    }, 500);
+                }
+            }
+        });
+
         // Send to Team button
         const sendToTeamBtn = document.getElementById('send-to-team-btn');
         const sendInstructions = document.getElementById('send-instructions');
